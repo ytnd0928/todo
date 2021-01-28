@@ -58,15 +58,18 @@ class App extends Component　{
       currentId+=1;//currentIdをインクリメントするということ
     };
 
-    handleChangeCompleted = (id,completed) => {
+    /**
+     * TODO の完了フラグを変更する
+     * @param {number} id 完了フラグを操作する TODO の id
+     * @param {boolean} completed 完了したかどうか
+     */
+    handleChangeCompleted = (id, completed) => {
+      // Map 関数で配列の要素を一つづつ操作する
       const newTodos = this.state.todos.map(todo => {
+        // もし TODO の id が目的の id だったら、completed の値を上書きする
         if (todo.id === id) {
-          return {
-            ...todo,
-            completed,
-          };
+          todo.completed = completed
         }
-
         return todo
       })
       this.setState({ todos: newTodos })
@@ -75,10 +78,7 @@ class App extends Component　{
     handleClickDelete = id => {
       const newTodos = this.state.todos.filter( todo => todo.id !== id)
       this.setState({ todos: newTodos });
-
     };
-
-
 }
 
 export default App;
